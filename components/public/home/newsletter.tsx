@@ -53,7 +53,7 @@ export const Newsletter = () => {
 
                     <Button
                       type="submit"
-                      className="h-10 rounded-full px-5 text-sm font-semibold">
+                      size="pill">
                       Assinar
                       <ArrowRightIcon data-icon="inline-end" />
                     </Button>

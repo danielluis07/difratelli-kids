@@ -15,7 +15,7 @@ export const NewProducts = () => {
       <div className="pointer-events-none absolute -left-10 top-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute right-0 bottom-18 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+      <div>
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <span className="inline-flex rounded-full border border-border/70 bg-card/80 px-3 py-1 text-[0.7rem] font-semibold tracking-[0.24em] text-muted-foreground uppercase backdrop-blur-sm">
@@ -34,8 +34,9 @@ export const NewProducts = () => {
 
           <Button
             asChild
-            variant="secondary"
-            className="w-fit rounded-full border border-border/70 bg-card/85 px-5 text-sm font-semibold text-foreground backdrop-blur-sm hover:bg-card">
+            variant="storefront-secondary"
+            size="pill-sm"
+            className="w-fit">
             <Link href="/produtos?filtro=novidades">
               Ver novidades
               <ArrowRightIcon data-icon="inline-end" />

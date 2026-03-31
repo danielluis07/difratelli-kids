@@ -11,7 +11,7 @@ export const SeasonalCollections = () => {
       <div className="pointer-events-none absolute -left-10 top-32 h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
       <div className="pointer-events-none absolute right-0 bottom-24 h-64 w-64 rounded-full bg-accent/8 blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+      <div>
         <div className="max-w-2xl">
           <span className="inline-flex rounded-full border border-border/70 bg-card/80 px-3 py-1 text-[0.7rem] font-semibold tracking-[0.24em] text-muted-foreground uppercase backdrop-blur-sm">
             Coleções sazonais

@@ -1,32 +1,34 @@
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 
+import { ProductsCarousel } from "@/components/public/products-carousel";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/public/product-card";
 import { products } from "@/lib/mock-data";
 
-const featuredProducts = products.filter((p) => p.isFeatured);
+const bestSellers = products.slice(0, 5);
 
-export const FeaturedProducts = () => {
+export const BestSellers = () => {
   return (
-    <section className="relative overflow-hidden py-14 sm:py-18 lg:py-24">
-      <div className="pointer-events-none absolute left-0 top-40 h-80 w-80 rounded-full bg-primary/8 blur-3xl" />
-      <div className="pointer-events-none absolute -right-10 bottom-20 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
+    <section
+      id="mais-vendidos"
+      className="relative overflow-hidden py-14 sm:py-18 lg:py-24">
+      <div className="pointer-events-none absolute -left-10 top-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+      <div className="pointer-events-none absolute right-0 bottom-18 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
 
       <div>
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <div className="max-w-xl">
+          <div className="max-w-2xl">
             <span className="inline-flex rounded-full border border-border/70 bg-card/80 px-3 py-1 text-[0.7rem] font-semibold tracking-[0.24em] text-muted-foreground uppercase backdrop-blur-sm">
-              Em destaque
+              Mais Vendidos
             </span>
 
             <h2 className="mt-4 text-3xl leading-none font-semibold tracking-[-0.04em] text-foreground sm:text-4xl lg:text-5xl">
-              Favoritos da estação.
+              Os queridinhos de quem já comprou.
             </h2>
 
             <p className="mt-4 max-w-lg text-sm leading-6 text-foreground/72 sm:text-base sm:leading-7">
-              Peças escolhidas a dedo com conforto, estilo e a qualidade que
-              acompanha cada aventura.
+              Peças aprovadas por muitas famílias: caimento confortável, toque
+              macio e acabamento premium para acompanhar cada aventura.
             </p>
           </div>
 
@@ -35,17 +37,15 @@ export const FeaturedProducts = () => {
             variant="storefront-secondary"
             size="pill-sm"
             className="w-fit">
-            <Link href="/produtos">
-              Ver todos
+            <Link href="/produtos?filtro=mais-vendidos">
+              Ver mais vendidos
               <ArrowRightIcon data-icon="inline-end" />
             </Link>
           </Button>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-7">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div className="mt-10">
+          <ProductsCarousel products={bestSellers} />
         </div>
       </div>
     </section>

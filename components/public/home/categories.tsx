@@ -63,7 +63,7 @@ export const Categories = () => {
       className="relative overflow-hidden py-14 sm:py-18 lg:py-24">
       <div className="pointer-events-none absolute right-0 top-28 h-72 w-72 rounded-full bg-accent/12 blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+      <div>
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
             <span className="inline-flex rounded-full border border-border/70 bg-card/80 px-3 py-1 text-[0.7rem] font-semibold tracking-[0.24em] text-muted-foreground uppercase backdrop-blur-sm">

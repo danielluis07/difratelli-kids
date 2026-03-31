@@ -68,9 +68,9 @@ export const ProductCard = ({ product, className }: ProductCardProps) => {
 
         <div className="mt-auto pt-3">
           <Button
-            variant="outline"
+            variant="storefront-outline"
             size="sm"
-            className="w-full transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+            className="w-full">
             Ver detalhes
           </Button>
         </div>

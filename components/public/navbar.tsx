@@ -94,9 +94,8 @@ export const Navbar = () => {
               <Button
                 key={label}
                 asChild
-                variant="ghost"
-                size="icon-sm"
-                className="rounded-full border border-transparent text-foreground/76 transition-colors hover:border-border/65 hover:bg-card hover:text-foreground">
+                variant="storefront-ghost"
+                size="icon-pill-sm">
                 <Link href={href} aria-label={label}>
                   <Icon />
                   <span className="sr-only">{label}</span>
@@ -108,9 +107,8 @@ export const Navbar = () => {
           <div className="flex items-center gap-1.5 sm:hidden">
             <Button
               asChild
-              variant="ghost"
-              size="icon-sm"
-              className="rounded-full border border-transparent text-foreground/76 hover:border-border/65 hover:bg-card hover:text-foreground">
+              variant="storefront-ghost"
+              size="icon-pill-sm">
               <Link href="/search" aria-label="Buscar">
                 <SearchIcon />
                 <span className="sr-only">Buscar</span>
@@ -119,9 +117,8 @@ export const Navbar = () => {
 
             <Button
               asChild
-              variant="ghost"
-              size="icon-sm"
-              className="rounded-full border border-transparent text-foreground/76 hover:border-border/65 hover:bg-card hover:text-foreground">
+              variant="storefront-ghost"
+              size="icon-pill-sm">
               <Link href="/bag" aria-label="Sacola">
                 <ShoppingBagIcon />
                 <span className="sr-only">Sacola</span>
@@ -131,9 +128,8 @@ export const Navbar = () => {
             <Sheet>
               <SheetTrigger asChild>
                 <Button
-                  variant="outline"
-                  size="icon-sm"
-                  className="rounded-full border-border/75 bg-card/80 text-foreground hover:bg-card">
+                  variant="storefront-secondary"
+                  size="icon-pill-sm">
                   <MenuIcon />
                   <span className="sr-only">Abrir menu</span>
                 </Button>
