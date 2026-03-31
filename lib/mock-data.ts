@@ -1,20 +1,10 @@
-export type CategorySlug = "calcas" | "saias" | "casacos" | "bermudas";
-
 export type CollectionSlug = "outono-inverno" | "primavera-verao";
 
 export type SizeLabel = "2" | "4" | "6" | "8" | "10" | "12" | "14";
-
-export type FabricSlug =
-  | "jeans-leve"
-  | "jeans-medio"
-  | "jeans-encorpado"
-  | "sarja"
-  | "moletom";
-
 export interface Category {
   id: string;
   name: string;
-  slug: CategorySlug;
+  slug: string;
   description: string;
   image: string;
 }
@@ -30,20 +20,14 @@ export interface Collection {
 export interface Fabric {
   id: string;
   name: string;
-  slug: FabricSlug;
+  slug: string;
   description: string;
-}
-
-export interface ProductImage {
-  id: string;
-  url: string;
-  alt: string;
 }
 
 export interface ProductVariant {
   id: string;
   size: SizeLabel;
-  fabric: FabricSlug;
+  fabric: string;
   stock: number;
 }
 
@@ -54,12 +38,12 @@ export interface Product {
   description: string;
   priceInCents: number;
   compareAtPriceInCents?: number;
-  category: CategorySlug;
-  collection: CollectionSlug;
-  fabrics: FabricSlug[];
+  category: string;
+  collection: string;
+  fabrics: string[];
   sizes: SizeLabel[];
   variants: ProductVariant[];
-  images: ProductImage[];
+  images: string[];
   isFeatured: boolean;
   isNew: boolean;
 }
@@ -70,28 +54,28 @@ export const categories: Category[] = [
     name: "Calças",
     slug: "calcas",
     description: "Modelos infantis confortáveis e versáteis para o dia a dia.",
-    image: "/images/categories/calcas.jpg",
+    image: "/images/categories/pants.png",
   },
   {
     id: "cat-2",
-    name: "Saias",
-    slug: "saias",
-    description: "Saias jeans infantis com caimento leve e visual moderno.",
-    image: "/images/categories/saias.jpg",
+    name: "Jaquetas",
+    slug: "jaquetas",
+    description: "Peças quentinhas para compor looks estilosos em dias frios.",
+    image: "/images/categories/jacket.png",
   },
   {
     id: "cat-3",
-    name: "Casacos",
-    slug: "casacos",
-    description: "Peças quentinhas para compor looks estilosos em dias frios.",
-    image: "/images/categories/casacos.jpg",
-  },
-  {
-    id: "cat-4",
     name: "Bermudas",
     slug: "bermudas",
     description: "Bermudas confortáveis para brincar com liberdade.",
-    image: "/images/categories/bermudas.jpg",
+    image: "/images/categories/male-shorts.png",
+  },
+  {
+    id: "cat-4",
+    name: "Shorts",
+    slug: "shorts",
+    description: "Shorts infantis em jeans leve para conforto total.",
+    image: "/images/categories/female-shorts.png",
   },
 ];
 
@@ -149,11 +133,11 @@ export const fabrics: Fabric[] = [
 
 export const products: Product[] = [
   {
-    id: "prod-1",
-    name: "Calça Jeans Infantil Clara",
-    slug: "calca-jeans-infantil-clara",
+    id: "1",
+    name: "Calça Jeans Clara Masculina",
+    slug: "calca-jeans-clara-masculina",
     description:
-      "Calça jeans infantil com modelagem confortável e lavagem clara para looks casuais.",
+      "Calça jeans masculina com lavagem clara e corte reto. Tecido com elastano para facilitar os movimentos.",
     priceInCents: 12990,
     compareAtPriceInCents: 14990,
     category: "calcas",
@@ -161,184 +145,261 @@ export const products: Product[] = [
     fabrics: ["jeans-leve", "jeans-medio"],
     sizes: ["2", "4", "6", "8", "10"],
     variants: [
-      { id: "var-1", size: "2", fabric: "jeans-leve", stock: 8 },
-      { id: "var-2", size: "4", fabric: "jeans-leve", stock: 10 },
-      { id: "var-3", size: "6", fabric: "jeans-medio", stock: 7 },
-      { id: "var-4", size: "8", fabric: "jeans-medio", stock: 6 },
-      { id: "var-5", size: "10", fabric: "jeans-medio", stock: 4 },
+      { id: "var-1-m", size: "2", fabric: "jeans-leve", stock: 8 },
+      { id: "var-2-m", size: "4", fabric: "jeans-leve", stock: 10 },
+      { id: "var-3-m", size: "6", fabric: "jeans-medio", stock: 7 },
+      { id: "var-4-m", size: "8", fabric: "jeans-medio", stock: 6 },
+      { id: "var-5-m", size: "10", fabric: "jeans-medio", stock: 4 },
     ],
-    images: [
-      {
-        id: "img-1",
-        url: "/images/products/calca-clara-1.jpg",
-        alt: "Calça jeans infantil clara vista frontal",
-      },
-      {
-        id: "img-2",
-        url: "/images/products/calca-clara-2.jpg",
-        alt: "Calça jeans infantil clara vista lateral",
-      },
-    ],
+    images: ["", ""],
     isFeatured: true,
     isNew: true,
   },
   {
-    id: "prod-2",
-    name: "Bermuda Jeans Infantil Stone",
-    slug: "bermuda-jeans-infantil-stone",
+    id: "2",
+    name: "Calça Jeans Clara Feminina",
+    slug: "calca-jeans-clara-feminina",
     description:
-      "Bermuda jeans infantil com lavagem stone e caimento solto para maior conforto.",
+      "Calça jeans feminina com lavagem clara e modelagem slim. Tecido com elastano para facilitar os movimentos.",
+    priceInCents: 12990,
+    compareAtPriceInCents: 14990,
+    category: "calcas",
+    collection: "primavera-verao",
+    fabrics: ["jeans-leve", "jeans-medio"],
+    sizes: ["2", "4", "6", "8", "10"],
+    variants: [
+      { id: "var-1-f", size: "2", fabric: "jeans-leve", stock: 8 },
+      { id: "var-2-f", size: "4", fabric: "jeans-leve", stock: 10 },
+      { id: "var-3-f", size: "6", fabric: "jeans-medio", stock: 7 },
+      { id: "var-4-f", size: "8", fabric: "jeans-medio", stock: 6 },
+      { id: "var-5-f", size: "10", fabric: "jeans-medio", stock: 4 },
+    ],
+    images: ["", ""],
+    isFeatured: true,
+    isNew: true,
+  },
+
+  {
+    id: "3",
+    name: "Bermuda Jeans Delavê Masculina",
+    slug: "bermuda-jeans-delave-masculina",
+    description:
+      "Bermuda jeans masculina com efeito delavê e cintura ajustável com elástico. Corte levemente largo para liberdade de movimento.",
     priceInCents: 8990,
     category: "bermudas",
     collection: "primavera-verao",
     fabrics: ["jeans-leve"],
     sizes: ["4", "6", "8", "10", "12"],
     variants: [
-      { id: "var-6", size: "4", fabric: "jeans-leve", stock: 9 },
-      { id: "var-7", size: "6", fabric: "jeans-leve", stock: 8 },
-      { id: "var-8", size: "8", fabric: "jeans-leve", stock: 6 },
-      { id: "var-9", size: "10", fabric: "jeans-leve", stock: 5 },
-      { id: "var-10", size: "12", fabric: "jeans-leve", stock: 3 },
+      { id: "var-6-m", size: "4", fabric: "jeans-leve", stock: 9 },
+      { id: "var-7-m", size: "6", fabric: "jeans-leve", stock: 8 },
+      { id: "var-8-m", size: "8", fabric: "jeans-leve", stock: 6 },
+      { id: "var-9-m", size: "10", fabric: "jeans-leve", stock: 5 },
+      { id: "var-10-m", size: "12", fabric: "jeans-leve", stock: 3 },
     ],
-    images: [
-      {
-        id: "img-3",
-        url: "/images/products/bermuda-stone-1.jpg",
-        alt: "Bermuda jeans infantil stone vista frontal",
-      },
-      {
-        id: "img-4",
-        url: "/images/products/bermuda-stone-2.jpg",
-        alt: "Bermuda jeans infantil stone em detalhe",
-      },
-    ],
+    images: ["", ""],
     isFeatured: true,
     isNew: false,
   },
   {
-    id: "prod-3",
-    name: "Saia Jeans Infantil Delicada",
-    slug: "saia-jeans-infantil-delicada",
+    id: "4",
+    name: "Bermuda Jeans Delavê Feminina",
+    slug: "bermuda-jeans-delave-feminina",
     description:
-      "Saia jeans infantil com visual leve e moderno, ideal para ocasiões casuais.",
+      "Bermuda jeans feminina com efeito delavê e barra dobrada. Cintura com elástico interno para um ajuste confortável.",
+    priceInCents: 8990,
+    category: "bermudas",
+    collection: "primavera-verao",
+    fabrics: ["jeans-leve"],
+    sizes: ["4", "6", "8", "10", "12"],
+    variants: [
+      { id: "var-6-f", size: "4", fabric: "jeans-leve", stock: 9 },
+      { id: "var-7-f", size: "6", fabric: "jeans-leve", stock: 8 },
+      { id: "var-8-f", size: "8", fabric: "jeans-leve", stock: 6 },
+      { id: "var-9-f", size: "10", fabric: "jeans-leve", stock: 5 },
+      { id: "var-10-f", size: "12", fabric: "jeans-leve", stock: 3 },
+    ],
+    images: ["", ""],
+    isFeatured: true,
+    isNew: false,
+  },
+
+  {
+    id: "5",
+    name: "Bermuda Jeans Barra Desfiada Masculina",
+    slug: "bermuda-jeans-barra-desfiada-masculina",
+    description:
+      "Bermuda jeans masculina com barra desfiada e lavagem média. Modelagem evasê com cós elástico.",
     priceInCents: 9990,
     compareAtPriceInCents: 11990,
-    category: "saias",
+    category: "bermudas",
     collection: "primavera-verao",
     fabrics: ["jeans-leve", "sarja"],
     sizes: ["4", "6", "8", "10"],
     variants: [
-      { id: "var-11", size: "4", fabric: "jeans-leve", stock: 8 },
-      { id: "var-12", size: "6", fabric: "jeans-leve", stock: 7 },
-      { id: "var-13", size: "8", fabric: "sarja", stock: 6 },
-      { id: "var-14", size: "10", fabric: "sarja", stock: 4 },
+      { id: "var-11-m", size: "4", fabric: "jeans-leve", stock: 8 },
+      { id: "var-12-m", size: "6", fabric: "jeans-leve", stock: 7 },
+      { id: "var-13-m", size: "8", fabric: "sarja", stock: 6 },
+      { id: "var-14-m", size: "10", fabric: "sarja", stock: 4 },
     ],
-    images: [
-      {
-        id: "img-5",
-        url: "/images/products/saia-delicada-1.jpg",
-        alt: "Saia jeans infantil delicada vista frontal",
-      },
-      {
-        id: "img-6",
-        url: "/images/products/saia-delicada-2.jpg",
-        alt: "Saia jeans infantil delicada em look completo",
-      },
-    ],
+    images: ["", ""],
     isFeatured: false,
     isNew: true,
   },
   {
-    id: "prod-4",
-    name: "Casaco Jeans Infantil Cozy",
-    slug: "casaco-jeans-infantil-cozy",
+    id: "6",
+    name: "Shorts Jeans Barra Desfiada Feminina",
+    slug: "shorts-jeans-barra-desfiada-feminina",
     description:
-      "Casaco jeans infantil com tecido mais encorpado para compor looks de meia-estação.",
+      "Shorts jeans feminina com barra desfiada e lavagem média. Modelagem evasê com cós elástico.",
+    priceInCents: 9990,
+    compareAtPriceInCents: 11990,
+    category: "shorts",
+    collection: "primavera-verao",
+    fabrics: ["jeans-leve", "sarja"],
+    sizes: ["4", "6", "8", "10"],
+    variants: [
+      { id: "var-11-f", size: "4", fabric: "jeans-leve", stock: 8 },
+      { id: "var-12-f", size: "6", fabric: "jeans-leve", stock: 7 },
+      { id: "var-13-f", size: "8", fabric: "sarja", stock: 6 },
+      { id: "var-14-f", size: "10", fabric: "sarja", stock: 4 },
+    ],
+    images: ["", ""],
+    isFeatured: false,
+    isNew: true,
+  },
+
+  {
+    id: "7",
+    name: "Jaqueta Jeans com Forro Fleece Masculino",
+    slug: "jaqueta-jeans-forro-fleece-masculino",
+    description:
+      "Jaqueta jeans masculina com forro interno em fleece. Fechamento por botões e bolsos laterais.",
     priceInCents: 15990,
     compareAtPriceInCents: 17990,
-    category: "casacos",
+    category: "jaquetas",
     collection: "outono-inverno",
     fabrics: ["jeans-encorpado", "moletom"],
     sizes: ["6", "8", "10", "12", "14"],
     variants: [
-      { id: "var-15", size: "6", fabric: "jeans-encorpado", stock: 4 },
-      { id: "var-16", size: "8", fabric: "jeans-encorpado", stock: 5 },
-      { id: "var-17", size: "10", fabric: "moletom", stock: 6 },
-      { id: "var-18", size: "12", fabric: "moletom", stock: 4 },
-      { id: "var-19", size: "14", fabric: "moletom", stock: 2 },
+      { id: "var-15-m", size: "6", fabric: "jeans-encorpado", stock: 4 },
+      { id: "var-16-m", size: "8", fabric: "jeans-encorpado", stock: 5 },
+      { id: "var-17-m", size: "10", fabric: "moletom", stock: 6 },
+      { id: "var-18-m", size: "12", fabric: "moletom", stock: 4 },
+      { id: "var-19-m", size: "14", fabric: "moletom", stock: 2 },
     ],
-    images: [
-      {
-        id: "img-7",
-        url: "/images/products/casaco-cozy-1.jpg",
-        alt: "Casaco jeans infantil cozy vista frontal",
-      },
-      {
-        id: "img-8",
-        url: "/images/products/casaco-cozy-2.jpg",
-        alt: "Casaco jeans infantil cozy vista traseira",
-      },
-    ],
+    images: ["", ""],
     isFeatured: true,
     isNew: false,
   },
   {
-    id: "prod-5",
-    name: "Calça Jeans Infantil Premium",
-    slug: "calca-jeans-infantil-premium",
+    id: "8",
+    name: "Jaqueta Jeans Estonada Feminina",
+    slug: "jaqueta-jeans-estonada-feminina",
     description:
-      "Calça jeans infantil em tecido encorpado, ideal para dias frios e composições elegantes.",
+      "Jaqueta jeans feminina com acabamento estonado. Fechamento por botões e bolsos com acabamento bordado.",
+    priceInCents: 15990,
+    compareAtPriceInCents: 17990,
+    category: "jaquetas",
+    collection: "outono-inverno",
+    fabrics: ["jeans-encorpado", "moletom"],
+    sizes: ["6", "8", "10", "12", "14"],
+    variants: [
+      { id: "var-15-f", size: "6", fabric: "jeans-encorpado", stock: 4 },
+      { id: "var-16-f", size: "8", fabric: "jeans-encorpado", stock: 5 },
+      { id: "var-17-f", size: "10", fabric: "moletom", stock: 6 },
+      { id: "var-18-f", size: "12", fabric: "moletom", stock: 4 },
+      { id: "var-19-f", size: "14", fabric: "moletom", stock: 2 },
+    ],
+    images: ["", ""],
+    isFeatured: true,
+    isNew: false,
+  },
+
+  {
+    id: "9",
+    name: "Calça Jeans Escura Masculina",
+    slug: "calca-jeans-escura-masculina",
+    description:
+      "Calça jeans masculina em lavagem escura com tecido encorpado e costuras reforçadas. Ideal para dias frios.",
     priceInCents: 13990,
     category: "calcas",
     collection: "outono-inverno",
     fabrics: ["jeans-medio", "jeans-encorpado"],
     sizes: ["4", "6", "8", "10", "12"],
     variants: [
-      { id: "var-20", size: "4", fabric: "jeans-medio", stock: 6 },
-      { id: "var-21", size: "6", fabric: "jeans-medio", stock: 8 },
-      { id: "var-22", size: "8", fabric: "jeans-encorpado", stock: 5 },
-      { id: "var-23", size: "10", fabric: "jeans-encorpado", stock: 4 },
-      { id: "var-24", size: "12", fabric: "jeans-encorpado", stock: 3 },
+      { id: "var-20-m", size: "4", fabric: "jeans-medio", stock: 6 },
+      { id: "var-21-m", size: "6", fabric: "jeans-medio", stock: 8 },
+      { id: "var-22-m", size: "8", fabric: "jeans-encorpado", stock: 5 },
+      { id: "var-23-m", size: "10", fabric: "jeans-encorpado", stock: 4 },
+      { id: "var-24-m", size: "12", fabric: "jeans-encorpado", stock: 3 },
     ],
-    images: [
-      {
-        id: "img-9",
-        url: "/images/products/calca-premium-1.jpg",
-        alt: "Calça jeans infantil premium vista frontal",
-      },
-      {
-        id: "img-10",
-        url: "/images/products/calca-premium-2.jpg",
-        alt: "Calça jeans infantil premium em detalhe",
-      },
-    ],
+    images: ["", ""],
     isFeatured: false,
     isNew: false,
   },
   {
-    id: "prod-6",
-    name: "Bermuda Jeans Infantil Basic",
-    slug: "bermuda-jeans-infantil-basic",
+    id: "10",
+    name: "Calça Jeans Feminina Dark Fit Confort",
+    slug: "calca-jeans-feminina-dark-fit-confort",
     description:
-      "Bermuda básica infantil em jeans leve para o dia a dia com muito conforto.",
+      "Calça jeans feminina em lavagem escura com cós parcialmente elástico. Tecido encorpado que mantém o calor sem prender os movimentos.",
+    priceInCents: 13990,
+    category: "calcas",
+    collection: "outono-inverno",
+    fabrics: ["jeans-medio", "jeans-encorpado"],
+    sizes: ["4", "6", "8", "10", "12"],
+    variants: [
+      { id: "var-20-f", size: "4", fabric: "jeans-medio", stock: 6 },
+      { id: "var-21-f", size: "6", fabric: "jeans-medio", stock: 8 },
+      { id: "var-22-f", size: "8", fabric: "jeans-encorpado", stock: 5 },
+      { id: "var-23-f", size: "10", fabric: "jeans-encorpado", stock: 4 },
+      { id: "var-24-f", size: "12", fabric: "jeans-encorpado", stock: 3 },
+    ],
+    images: ["", ""],
+    isFeatured: false,
+    isNew: false,
+  },
+
+  {
+    id: "11",
+    name: "Bermuda Jeans Cintura Elástica Masculina",
+    slug: "bermuda-jeans-cintura-elastica-masculina",
+    description:
+      "Bermuda jeans masculina com cintura totalmente elástica e cordão de ajuste. Tecido leve e resistente para o uso diário.",
     priceInCents: 7990,
     category: "bermudas",
     collection: "primavera-verao",
     fabrics: ["jeans-leve", "sarja"],
     sizes: ["2", "4", "6", "8"],
     variants: [
-      { id: "var-25", size: "2", fabric: "jeans-leve", stock: 8 },
-      { id: "var-26", size: "4", fabric: "jeans-leve", stock: 10 },
-      { id: "var-27", size: "6", fabric: "sarja", stock: 6 },
-      { id: "var-28", size: "8", fabric: "sarja", stock: 5 },
+      { id: "var-25-m", size: "2", fabric: "jeans-leve", stock: 8 },
+      { id: "var-26-m", size: "4", fabric: "jeans-leve", stock: 10 },
+      { id: "var-27-m", size: "6", fabric: "sarja", stock: 6 },
+      { id: "var-28-m", size: "8", fabric: "sarja", stock: 5 },
     ],
-    images: [
-      {
-        id: "img-11",
-        url: "/images/products/bermuda-basic-1.jpg",
-        alt: "Bermuda jeans infantil basic vista frontal",
-      },
+    images: ["", ""],
+    isFeatured: false,
+    isNew: true,
+  },
+  {
+    id: "12",
+    name: "Bermuda Jeans Destroyed Clara Feminina",
+    slug: "bermuda-jeans-destroyed-clara-elastica-feminina",
+    description:
+      "Bermuda jeans feminina clara com efeito destroyed, cintura elástica e bolsos funcionais. Perfeita para um visual despojado e confortável no dia a dia.",
+    priceInCents: 7990,
+    category: "bermudas",
+    collection: "primavera-verao",
+    fabrics: ["jeans-leve", "sarja"],
+    sizes: ["2", "4", "6", "8"],
+    variants: [
+      { id: "var-25-f", size: "2", fabric: "jeans-leve", stock: 8 },
+      { id: "var-26-f", size: "4", fabric: "jeans-leve", stock: 10 },
+      { id: "var-27-f", size: "6", fabric: "sarja", stock: 6 },
+      { id: "var-28-f", size: "8", fabric: "sarja", stock: 5 },
     ],
+    images: ["", ""],
     isFeatured: false,
     isNew: true,
   },
