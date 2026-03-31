@@ -156,7 +156,7 @@ export const products: Product[] = [
       "/images/products/1/calca-jeans-clara-masculina-2.png",
     ],
     isFeatured: true,
-    isNew: true,
+    isNew: false,
   },
   {
     id: "2",
@@ -182,7 +182,7 @@ export const products: Product[] = [
       "/images/products/2/calca-jeans-clara-feminina-2.png",
     ],
     isFeatured: true,
-    isNew: true,
+    isNew: false,
   },
 
   {
@@ -208,7 +208,7 @@ export const products: Product[] = [
       "/images/products/3/bermuda-jeans-delave-masculina-2.png",
     ],
     isFeatured: true,
-    isNew: false,
+    isNew: true,
   },
   {
     id: "4",

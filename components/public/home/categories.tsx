@@ -50,7 +50,7 @@ const categoriesData = [
     glowClassName: "bg-primary/24",
     badgeClassName: "bg-primary/14 text-foreground",
     overlayClassName:
-      "from-background/95 via-background/42 via-28% to-background/10",
+      "from-background/95 via-background/32 via-28% to-background/10",
   },
 ] as const;
 

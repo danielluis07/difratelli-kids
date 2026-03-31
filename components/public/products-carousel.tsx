@@ -33,8 +33,8 @@ export const ProductsCarousel = ({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="-left-4 lg:-left-5" />
-      <CarouselNext className="-right-4 lg:-right-5" />
+      <CarouselPrevious className="-left-6 lg:-left-8" />
+      <CarouselNext className="-right-6 lg:-right-8" />
     </Carousel>
   );
 };
