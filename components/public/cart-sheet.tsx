@@ -210,6 +210,12 @@ export const CartSheet = () => {
 
               <SheetClose asChild>
                 <Button asChild size="pill" className="w-full">
+                  <Link href="/checkout">Finalizar compra</Link>
+                </Button>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Button asChild variant="outline" size="pill" className="w-full">
                   <Link href="/products">Continuar comprando</Link>
                 </Button>
               </SheetClose>
