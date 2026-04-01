@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   RulerIcon,
   ShirtIcon,
@@ -14,6 +14,7 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useAddToCart } from "@/hooks/use-cart";
 import type { Product, SizeLabel } from "@/lib/mock-data";
 import { fabrics as allFabrics } from "@/lib/mock-data";
 import { cn, centsToReais } from "@/lib/utils";
@@ -26,6 +27,7 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
   const [selectedSize, setSelectedSize] = useState<SizeLabel | null>(null);
   const [selectedFabric, setSelectedFabric] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const addToCart = useAddToCart();
 
   const hasDiscount = !!product.compareAtPriceInCents;
   const discountPercent = hasDiscount
@@ -68,6 +70,10 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
     return allFabrics.find((f) => f.slug === slug)?.name ?? slug;
   };
 
+  const effectiveQuantity = currentVariant
+    ? Math.min(quantity, currentVariant.stock)
+    : quantity;
+
   const handleSizeSelect = (size: SizeLabel) => {
     setSelectedSize(size);
     // Reset fabric if not available for this size
@@ -87,6 +93,26 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
       setSelectedSize(null);
     }
   };
+
+  const handleAddToCart = () => {
+    if (!currentVariant) {
+      return;
+    }
+
+    addToCart({
+      product,
+      variant: currentVariant,
+      quantity: effectiveQuantity,
+    });
+  };
+
+  const selectionHint = !selectedSize && !selectedFabric
+    ? "Selecione o tamanho e o tecido para continuar"
+    : !selectedSize
+      ? "Selecione o tamanho para continuar"
+      : !selectedFabric
+        ? "Selecione o tecido para continuar"
+        : null;
 
   return (
     <div className="flex flex-col">
@@ -148,6 +174,7 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
             return (
               <button
                 key={size}
+                type="button"
                 onClick={() => handleSizeSelect(size)}
                 disabled={!isAvailable}
                 className={cn(
@@ -185,6 +212,7 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
             return (
               <button
                 key={fabric}
+                type="button"
                 onClick={() => handleFabricSelect(fabric)}
                 disabled={!isAvailable}
                 className={cn(
@@ -225,37 +253,54 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
         <div className="flex h-11 w-fit items-center rounded-xl border border-border">
           <button
-            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+            type="button"
+            onClick={() =>
+              setQuantity((q) =>
+                Math.max(
+                  1,
+                  (currentVariant ? Math.min(q, currentVariant.stock) : q) - 1,
+                ),
+              )
+            }
             className="flex h-full w-10 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
-            disabled={quantity <= 1}>
+            disabled={effectiveQuantity <= 1}>
             <MinusIcon className="size-4" />
           </button>
           <span className="flex w-10 items-center justify-center text-sm font-semibold">
-            {quantity}
+            {effectiveQuantity}
           </span>
           <button
+            type="button"
             onClick={() =>
               setQuantity((q) =>
-                Math.min(currentVariant?.stock ?? 10, q + 1),
+                Math.min(
+                  currentVariant?.stock ?? 10,
+                  (currentVariant ? Math.min(q, currentVariant.stock) : q) + 1,
+                ),
               )
             }
-            className="flex h-full w-10 items-center justify-center text-muted-foreground transition-colors hover:text-foreground">
+            className="flex h-full w-10 items-center justify-center text-muted-foreground transition-colors hover:text-foreground"
+            disabled={
+              !currentVariant || effectiveQuantity >= currentVariant.stock
+            }>
             <PlusIcon className="size-4" />
           </button>
         </div>
 
         <Button
+          type="button"
           size="pill-lg"
           className="w-full sm:flex-1"
-          disabled={!selectedSize || !selectedFabric}>
-          <ShoppingCartIcon data-icon="inline-start" className="size-4" />
+          disabled={!currentVariant}
+          onClick={handleAddToCart}>
+          <ShoppingCartIcon data-icon="inline-start" />
           Adicionar ao carrinho
         </Button>
       </div>
 
-      {!selectedSize && !selectedFabric && (
+      {selectionHint && (
         <p className="mt-2 text-xs text-muted-foreground">
-          Selecione o tamanho e o tecido para continuar
+          {selectionHint}
         </p>
       )}
 

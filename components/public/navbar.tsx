@@ -11,7 +11,13 @@ import {
 } from "lucide-react";
 
 import logoImage from "@/public/images/logo.png";
+import { CartSheet } from "@/components/public/cart-sheet";
 import { Button } from "@/components/ui/button";
+import {
+  useCartHasHydrated,
+  useCartItemCount,
+  useOpenCart,
+} from "@/hooks/use-cart";
 import {
   Sheet,
   SheetClose,
@@ -35,10 +41,15 @@ const actionItems = [
   { label: "Buscar", href: "/search", icon: SearchIcon },
   { label: "Conta", href: "/account", icon: UserRoundIcon },
   { label: "Favoritos", href: "/wishlist", icon: HeartIcon },
-  { label: "Sacola", href: "/bag", icon: ShoppingBagIcon },
 ];
 
 export const Navbar = () => {
+  const itemCount = useCartItemCount();
+  const hasHydrated = useCartHasHydrated();
+  const openCart = useOpenCart();
+  const visibleItemCount = hasHydrated ? itemCount : 0;
+  const cartCountLabel = visibleItemCount > 99 ? "99+" : `${visibleItemCount}`;
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 shadow-[0_18px_40px_-34px_color-mix(in_oklab,var(--color-foreground)_35%,transparent)] backdrop-blur-lg supports-backdrop-filter:bg-background/70">
       <div className="border-b border-border/60 bg-linear-to-r from-primary/12 via-background to-accent/18">
@@ -102,6 +113,22 @@ export const Navbar = () => {
                 </Link>
               </Button>
             ))}
+
+            <Button
+              type="button"
+              variant="storefront-ghost"
+              size="icon-pill-sm"
+              className="relative"
+              onClick={openCart}
+              aria-label="Abrir sacola">
+              <ShoppingBagIcon />
+              {visibleItemCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex min-w-5 items-center justify-center rounded-full bg-primary px-1.5 py-0.5 text-[0.65rem] font-semibold text-primary-foreground">
+                  {cartCountLabel}
+                </span>
+              )}
+              <span className="sr-only">Sacola</span>
+            </Button>
           </div>
 
           <div className="flex items-center gap-1.5 sm:hidden">
@@ -116,13 +143,19 @@ export const Navbar = () => {
             </Button>
 
             <Button
-              asChild
+              type="button"
               variant="storefront-ghost"
-              size="icon-pill-sm">
-              <Link href="/bag" aria-label="Sacola">
-                <ShoppingBagIcon />
-                <span className="sr-only">Sacola</span>
-              </Link>
+              size="icon-pill-sm"
+              className="relative"
+              onClick={openCart}
+              aria-label="Abrir sacola">
+              <ShoppingBagIcon />
+              {visibleItemCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex min-w-5 items-center justify-center rounded-full bg-primary px-1.5 py-0.5 text-[0.65rem] font-semibold text-primary-foreground">
+                  {cartCountLabel}
+                </span>
+              )}
+              <span className="sr-only">Sacola</span>
             </Button>
 
             <Sheet>
@@ -182,6 +215,8 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <CartSheet />
     </header>
   );
 };
