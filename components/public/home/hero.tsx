@@ -43,7 +43,7 @@ export const Hero = () => {
                 asChild
                 size="pill-lg"
                 className="w-full shadow-lg shadow-primary/20 sm:w-auto">
-                <Link href="#colecao">Ver coleção</Link>
+                <Link href="/products">Ver coleção</Link>
               </Button>
 
               <Button

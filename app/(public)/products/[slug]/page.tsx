@@ -6,6 +6,25 @@ import { ProductImageGallery } from "@/components/public/product-image-gallery";
 import { ProductInfo } from "@/components/public/product-info";
 import { ProductsCarousel } from "@/components/public/products-carousel";
 import { products, categories } from "@/lib/mock-data";
+import type { Product } from "@/lib/mock-data";
+
+function sortRelatedProducts(items: Product[], currentProductId: string) {
+  const currentId = Number(currentProductId);
+
+  return [...items].sort((a, b) => {
+    const featuredDiff = Number(b.isFeatured) - Number(a.isFeatured);
+    if (featuredDiff !== 0) return featuredDiff;
+
+    const newDiff = Number(b.isNew) - Number(a.isNew);
+    if (newDiff !== 0) return newDiff;
+
+    const proximityDiff =
+      Math.abs(Number(a.id) - currentId) - Math.abs(Number(b.id) - currentId);
+    if (proximityDiff !== 0) return proximityDiff;
+
+    return a.name.localeCompare(b.name, "pt-BR");
+  });
+}
 
 const ProductPage = async ({
   params,
@@ -24,23 +43,23 @@ const ProductPage = async ({
     categories.find((c) => c.slug === product.category)?.name ??
     product.category;
 
-  // Related products: same category, excluding current, shuffled, max 8
-  const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 8);
+  // Related products: same category, excluding current, prioritized deterministically
+  const relatedProducts = sortRelatedProducts(
+    products.filter((p) => p.category === product.category && p.id !== product.id),
+    product.id,
+  ).slice(0, 8);
 
   // If not enough from same category, fill with other products
   const fillerProducts =
     relatedProducts.length < 6
-      ? products
-          .filter(
+      ? sortRelatedProducts(
+          products.filter(
             (p) =>
               p.id !== product.id &&
               !relatedProducts.some((rp) => rp.id === p.id),
-          )
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 6 - relatedProducts.length)
+          ),
+          product.id,
+        ).slice(0, 6 - relatedProducts.length)
       : [];
 
   const allRelated = [...relatedProducts, ...fillerProducts];

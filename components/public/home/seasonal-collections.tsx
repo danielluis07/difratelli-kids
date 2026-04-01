@@ -30,7 +30,10 @@ export const SeasonalCollections = () => {
         <div className="mt-10 grid gap-5 lg:grid-cols-12">
           {/* Primary — Autumn / Winter */}
           <Link
-            href="/colecoes/outono-inverno"
+            href={{
+              pathname: "/products",
+              query: { season: "outono-inverno" },
+            }}
             className="group relative isolate flex min-h-112 overflow-hidden rounded-[2rem] border border-border/70 bg-card shadow-[0_30px_80px_-42px_color-mix(in_oklab,var(--color-foreground)_35%,transparent)] transition-transform duration-300 hover:-translate-y-1 sm:min-h-128 lg:col-span-7 lg:min-h-144 xl:min-h-160">
             <Image
               src={winterImage}
@@ -73,7 +76,10 @@ export const SeasonalCollections = () => {
 
           {/* Secondary — Spring / Summer */}
           <Link
-            href="/colecoes/primavera-verao"
+            href={{
+              pathname: "/products",
+              query: { season: "primavera-verao" },
+            }}
             className="group relative isolate flex min-h-88 overflow-hidden rounded-[2rem] border border-border/70 bg-card shadow-[0_30px_80px_-42px_color-mix(in_oklab,var(--color-foreground)_35%,transparent)] transition-transform duration-300 hover:-translate-y-1 sm:min-h-96 lg:col-span-5 lg:min-h-144 xl:min-h-160">
             <Image
               src={summerImage}

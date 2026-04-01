@@ -37,7 +37,11 @@ export const NewProducts = () => {
             variant="storefront-secondary"
             size="pill-sm"
             className="w-fit">
-            <Link href="/produtos?filtro=novidades">
+            <Link
+              href={{
+                pathname: "/products",
+                query: { sort: "newest" },
+              }}>
               Ver novidades
               <ArrowRightIcon data-icon="inline-end" />
             </Link>

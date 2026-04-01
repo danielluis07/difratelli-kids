@@ -4,7 +4,11 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { useURLSearch } from "@/hooks/use-url-search";
-import { products as allProducts, categories } from "@/lib/mock-data";
+import {
+  products as allProducts,
+  categories,
+  seasons,
+} from "@/lib/mock-data";
 import type { Product } from "@/lib/mock-data";
 
 import { ProductsToolbar } from "./products-toolbar";
@@ -33,6 +37,7 @@ export const ProductsWrapper = () => {
   const [category, setCategory] = useState(
     searchParams.get("category") || "all",
   );
+  const [season, setSeason] = useState(searchParams.get("season") || "all");
   const [sortBy, setSortBy] = useState(
     searchParams.get("sort") || "default",
   );
@@ -54,8 +59,12 @@ export const ProductsWrapper = () => {
       result = result.filter((p) => p.category === category);
     }
 
+    if (season && season !== "all") {
+      result = result.filter((p) => p.season === season);
+    }
+
     return sortProducts(result, sortBy);
-  }, [searchInput, category, sortBy]);
+  }, [searchInput, category, season, sortBy]);
 
   const activeFilters = useMemo(() => {
     const filters: { key: string; label: string; value: string }[] = [];
@@ -73,6 +82,15 @@ export const ProductsWrapper = () => {
       });
     }
 
+    if (season && season !== "all") {
+      const currentSeason = seasons.find((item) => item.slug === season);
+      filters.push({
+        key: "season",
+        label: "Estação",
+        value: currentSeason?.name || season,
+      });
+    }
+
     if (sortBy && sortBy !== "default") {
       const sortLabels: Record<string, string> = {
         "price-asc": "Menor preço",
@@ -87,17 +105,19 @@ export const ProductsWrapper = () => {
     }
 
     return filters;
-  }, [searchInput, category, sortBy]);
+  }, [searchInput, category, season, sortBy]);
 
   const handleRemoveFilter = (key: string) => {
     if (key === "search") setSearchInput("");
     if (key === "category") setCategory("all");
+    if (key === "season") setSeason("all");
     if (key === "sort") setSortBy("default");
   };
 
   const handleClearAll = () => {
     setSearchInput("");
     setCategory("all");
+    setSeason("all");
     setSortBy("default");
   };
 
@@ -109,6 +129,8 @@ export const ProductsWrapper = () => {
         isSearchPending={isPending}
         category={category}
         onCategoryChange={setCategory}
+        season={season}
+        onSeasonChange={setSeason}
         sortBy={sortBy}
         onSortChange={setSortBy}
         resultsCount={filteredProducts.length}

@@ -37,7 +37,7 @@ export const BestSellers = () => {
             variant="storefront-secondary"
             size="pill-sm"
             className="w-fit">
-            <Link href="/produtos?filtro=mais-vendidos">
+            <Link href="/products">
               Ver mais vendidos
               <ArrowRightIcon data-icon="inline-end" />
             </Link>

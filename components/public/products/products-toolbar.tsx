@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { categories } from "@/lib/mock-data";
+import { categories, seasons } from "@/lib/mock-data";
 
 interface ProductsToolbarProps {
   searchInput: string;
@@ -17,6 +17,8 @@ interface ProductsToolbarProps {
   isSearchPending: boolean;
   category: string;
   onCategoryChange: (value: string) => void;
+  season: string;
+  onSeasonChange: (value: string) => void;
   sortBy: string;
   onSortChange: (value: string) => void;
   resultsCount: number;
@@ -28,6 +30,8 @@ export const ProductsToolbar = ({
   isSearchPending,
   category,
   onCategoryChange,
+  season,
+  onSeasonChange,
   sortBy,
   onSortChange,
   resultsCount,
@@ -59,6 +63,20 @@ export const ProductsToolbar = ({
               {categories.map((cat) => (
                 <SelectItem key={cat.slug} value={cat.slug}>
                   {cat.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <Select value={season} onValueChange={onSeasonChange}>
+            <SelectTrigger className="h-10 gap-2 rounded-xl border-border/70 bg-card/60 px-3.5 backdrop-blur-sm transition-all duration-200 hover:border-border hover:bg-card/90">
+              <SelectValue placeholder="Estação" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todas as estações</SelectItem>
+              {seasons.map((currentSeason) => (
+                <SelectItem key={currentSeason.slug} value={currentSeason.slug}>
+                  {currentSeason.name}
                 </SelectItem>
               ))}
             </SelectContent>

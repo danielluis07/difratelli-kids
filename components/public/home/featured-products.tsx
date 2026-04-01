@@ -35,7 +35,7 @@ export const FeaturedProducts = () => {
             variant="storefront-secondary"
             size="pill-sm"
             className="w-fit">
-            <Link href="/produtos">
+            <Link href="/products">
               Ver todos
               <ArrowRightIcon data-icon="inline-end" />
             </Link>

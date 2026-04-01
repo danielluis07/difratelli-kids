@@ -1,4 +1,5 @@
 export type CollectionSlug = "outono-inverno" | "primavera-verao";
+export type SeasonSlug = "outono-inverno" | "primavera-verao";
 
 export type SizeLabel = "2" | "4" | "6" | "8" | "10" | "12" | "14";
 export interface Category {
@@ -36,6 +37,7 @@ export interface Product {
   name: string;
   slug: string;
   description: string;
+  season: SeasonSlug;
   priceInCents: number;
   compareAtPriceInCents?: number;
   category: string;
@@ -98,6 +100,11 @@ export const collections: Collection[] = [
   },
 ];
 
+export const seasons = [
+  { slug: "outono-inverno", name: "Outono / Inverno" },
+  { slug: "primavera-verao", name: "Primavera / Verão" },
+] satisfies { slug: SeasonSlug; name: string }[];
+
 export const fabrics: Fabric[] = [
   {
     id: "fab-1",
@@ -138,6 +145,7 @@ export const products: Product[] = [
     slug: "calca-jeans-clara-masculina",
     description:
       "Calça jeans masculina com lavagem clara e corte reto. Tecido com elastano para facilitar os movimentos.",
+    season: "primavera-verao",
     priceInCents: 12990,
     compareAtPriceInCents: 14990,
     category: "calcas",
@@ -164,6 +172,7 @@ export const products: Product[] = [
     slug: "calca-jeans-clara-feminina",
     description:
       "Calça jeans feminina com lavagem clara e modelagem slim. Tecido com elastano para facilitar os movimentos.",
+    season: "primavera-verao",
     priceInCents: 12990,
     compareAtPriceInCents: 14990,
     category: "calcas",
@@ -191,6 +200,7 @@ export const products: Product[] = [
     slug: "bermuda-jeans-delave-masculina",
     description:
       "Bermuda jeans masculina com efeito delavê e cintura ajustável com elástico. Corte levemente largo para liberdade de movimento.",
+    season: "primavera-verao",
     priceInCents: 8990,
     category: "bermudas",
     collection: "primavera-verao",
@@ -216,6 +226,7 @@ export const products: Product[] = [
     slug: "bermuda-jeans-delave-feminina",
     description:
       "Bermuda jeans feminina com efeito delavê e barra dobrada. Cintura com elástico interno para um ajuste confortável.",
+    season: "primavera-verao",
     priceInCents: 8990,
     category: "bermudas",
     collection: "primavera-verao",
@@ -242,6 +253,7 @@ export const products: Product[] = [
     slug: "bermuda-jeans-barra-desfiada-masculina",
     description:
       "Bermuda jeans masculina com barra desfiada e lavagem média. Modelagem evasê com cós elástico.",
+    season: "primavera-verao",
     priceInCents: 9990,
     compareAtPriceInCents: 11990,
     category: "bermudas",
@@ -267,6 +279,7 @@ export const products: Product[] = [
     slug: "shorts-jeans-barra-desfiada-feminina",
     description:
       "Shorts jeans feminina com barra desfiada e lavagem média. Modelagem evasê com cós elástico.",
+    season: "primavera-verao",
     priceInCents: 9990,
     compareAtPriceInCents: 11990,
     category: "shorts",
@@ -293,6 +306,7 @@ export const products: Product[] = [
     slug: "jaqueta-jeans-forro-fleece-masculino",
     description:
       "Jaqueta jeans masculina com forro interno em fleece. Fechamento por botões e bolsos laterais.",
+    season: "outono-inverno",
     priceInCents: 15990,
     compareAtPriceInCents: 17990,
     category: "jaquetas",
@@ -319,6 +333,7 @@ export const products: Product[] = [
     slug: "jaqueta-jeans-estonada-feminina",
     description:
       "Jaqueta jeans feminina com acabamento estonado. Fechamento por botões e bolsos com acabamento bordado.",
+    season: "outono-inverno",
     priceInCents: 15990,
     compareAtPriceInCents: 17990,
     category: "jaquetas",
@@ -346,6 +361,7 @@ export const products: Product[] = [
     slug: "calca-jeans-escura-masculina",
     description:
       "Calça jeans masculina em lavagem escura com tecido encorpado e costuras reforçadas. Ideal para dias frios.",
+    season: "outono-inverno",
     priceInCents: 13990,
     category: "calcas",
     collection: "outono-inverno",
@@ -371,6 +387,7 @@ export const products: Product[] = [
     slug: "calca-jeans-feminina-dark-fit-confort",
     description:
       "Calça jeans feminina em lavagem escura com cós parcialmente elástico. Tecido encorpado que mantém o calor sem prender os movimentos.",
+    season: "outono-inverno",
     priceInCents: 13990,
     category: "calcas",
     collection: "outono-inverno",
@@ -397,6 +414,7 @@ export const products: Product[] = [
     slug: "bermuda-jeans-cintura-elastica-masculina",
     description:
       "Bermuda jeans masculina com cintura totalmente elástica e cordão de ajuste. Tecido leve e resistente para o uso diário.",
+    season: "primavera-verao",
     priceInCents: 7990,
     category: "bermudas",
     collection: "primavera-verao",
@@ -421,6 +439,7 @@ export const products: Product[] = [
     slug: "bermuda-jeans-destroyed-clara-elastica-feminina",
     description:
       "Bermuda jeans feminina clara com efeito destroyed, cintura elástica e bolsos funcionais. Perfeita para um visual despojado e confortável no dia a dia.",
+    season: "primavera-verao",
     priceInCents: 7990,
     category: "bermudas",
     collection: "primavera-verao",
@@ -438,6 +457,166 @@ export const products: Product[] = [
     ],
     isFeatured: false,
     isNew: true,
+  },
+  {
+    id: "13",
+    name: "Calça Jeans Masculina Skinny Básica",
+    slug: "calca-jeans-masculina-skinny-basica",
+    description:
+      "Calça jeans masculina corte skinny em lavagem média, com elastano para maior mobilidade. Ideal para o dia a dia com um visual moderno e despojado.",
+    season: "outono-inverno",
+    priceInCents: 12990,
+    category: "calcas",
+    collection: "basicos",
+    fabrics: ["jeans-medio", "jeans-com-elastano"],
+    sizes: ["4", "6", "8", "10", "12", "14"],
+    variants: [
+      { id: "var-29-m", size: "4", fabric: "jeans-medio", stock: 7 },
+      { id: "var-30-m", size: "6", fabric: "jeans-medio", stock: 9 },
+      { id: "var-31-m", size: "8", fabric: "jeans-com-elastano", stock: 6 },
+      { id: "var-32-m", size: "10", fabric: "jeans-com-elastano", stock: 5 },
+      { id: "var-33-m", size: "12", fabric: "jeans-com-elastano", stock: 4 },
+      { id: "var-34-m", size: "14", fabric: "jeans-com-elastano", stock: 3 },
+    ],
+    images: [
+      "/images/products/13/calca-jeans-masculina-skinny-basica.png",
+      "/images/products/13/calca-jeans-masculina-skinny-basica-2.png",
+    ],
+    isFeatured: false,
+    isNew: true,
+  },
+  {
+    id: "14",
+    name: "Bermuda Jeans Masculina Cargo Reforçada",
+    slug: "bermuda-jeans-masculina-cargo-reforcada",
+    description:
+      "Bermuda jeans masculina estilo cargo com bolsos laterais funcionais e costuras reforçadas. Tecido encorpado que garante durabilidade para o uso intenso.",
+    season: "primavera-verao",
+    priceInCents: 9990,
+    category: "bermudas",
+    collection: "primavera-verao",
+    fabrics: ["jeans-encorpado", "sarja"],
+    sizes: ["4", "6", "8", "10", "12"],
+    variants: [
+      { id: "var-35-m", size: "4", fabric: "jeans-encorpado", stock: 8 },
+      { id: "var-36-m", size: "6", fabric: "jeans-encorpado", stock: 10 },
+      { id: "var-37-m", size: "8", fabric: "sarja", stock: 7 },
+      { id: "var-38-m", size: "10", fabric: "sarja", stock: 5 },
+      { id: "var-39-m", size: "12", fabric: "sarja", stock: 4 },
+    ],
+    images: [
+      "/images/products/14/bermuda-jeans-masculina-cargo-reforcada.png",
+      "/images/products/14/bermuda-jeans-masculina-cargo-reforcada-2.png",
+    ],
+    isFeatured: false,
+    isNew: false,
+  },
+  {
+    id: "15",
+    name: "Short Jeans Feminino Cintura Alta Destroyed",
+    slug: "short-jeans-feminino-cintura-alta-destroyed",
+    description:
+      "Short jeans feminino de cintura alta com efeito destroyed e barra desfiada. Tecido leve e confortável, perfeito para os dias quentes.",
+    season: "primavera-verao",
+    priceInCents: 6990,
+    category: "shorts",
+    collection: "primavera-verao",
+    fabrics: ["jeans-leve", "sarja"],
+    sizes: ["2", "4", "6", "8", "10"],
+    variants: [
+      { id: "var-40-f", size: "2", fabric: "jeans-leve", stock: 6 },
+      { id: "var-41-f", size: "4", fabric: "jeans-leve", stock: 9 },
+      { id: "var-42-f", size: "6", fabric: "jeans-leve", stock: 8 },
+      { id: "var-43-f", size: "8", fabric: "sarja", stock: 5 },
+      { id: "var-44-f", size: "10", fabric: "sarja", stock: 3 },
+    ],
+    images: [
+      "/images/products/15/short-jeans-feminino-cintura-alta-destroyed.png",
+      "/images/products/15/short-jeans-feminino-cintura-alta-destroyed-2.png",
+    ],
+    isFeatured: false,
+    isNew: true,
+  },
+  {
+    id: "16",
+    name: "Jaqueta Jeans Feminina Destroyed",
+    slug: "jaqueta-jeans-feminina-destroyed",
+    description:
+      "Jaqueta jeans feminina com acabamento destroyed e lavagem estonada. Modelagem com bolsos frontais e fechamento por botões. Ideal para composições modernas e despojadas no outono e inverno.",
+    season: "outono-inverno",
+    priceInCents: 19990,
+    category: "jaquetas",
+    collection: "outono-inverno",
+    fabrics: ["jeans-estonado", "jeans-encorpado"],
+    sizes: ["2", "4", "6", "8", "10", "12"],
+    variants: [
+      { id: "var-45-f", size: "2", fabric: "jeans-medio", stock: 4 },
+      { id: "var-46-f", size: "4", fabric: "jeans-medio", stock: 7 },
+      { id: "var-47-f", size: "6", fabric: "jeans-medio", stock: 8 },
+      { id: "var-48-f", size: "8", fabric: "jeans-encorpado", stock: 6 },
+      { id: "var-49-f", size: "10", fabric: "jeans-encorpado", stock: 5 },
+      { id: "var-50-f", size: "12", fabric: "jeans-encorpado", stock: 3 },
+    ],
+    images: [
+      "/images/products/16/jaqueta-jeans-feminina-destroyed.png",
+      "/images/products/16/jaqueta-jeans-feminina-destroyed-2.png",
+    ],
+    isFeatured: false,
+    isNew: true,
+  },
+  {
+    id: "17",
+    name: "Jaqueta Militar Infantil Masculina",
+    slug: "jaqueta-militar-infantil-masculina",
+    description:
+      "Jaqueta infantil masculina estilo militar com quatro bolsos frontais com abas e botões de pressão. Gola alta com zíper e fecho superior por botão. Tecido encorpado em tom chumbo, ideal para o outono e inverno. Modelagem confortável e despojada, perfeita para o dia a dia dos pequenos.",
+    season: "outono-inverno",
+    priceInCents: 15990,
+    category: "jaquetas",
+    collection: "outono-inverno",
+    fabrics: ["sarja-pesada", "algodao-encorpado"],
+    sizes: ["2", "4", "6", "8", "10", "12"],
+    variants: [
+      { id: "var-51-m", size: "2", fabric: "sarja-pesada", stock: 5 },
+      { id: "var-52-m", size: "4", fabric: "sarja-pesada", stock: 8 },
+      { id: "var-53-m", size: "6", fabric: "sarja-pesada", stock: 6 },
+      { id: "var-54-m", size: "8", fabric: "algodao-encorpado", stock: 7 },
+      { id: "var-55-m", size: "10", fabric: "algodao-encorpado", stock: 4 },
+      { id: "var-56-m", size: "12", fabric: "algodao-encorpado", stock: 3 },
+    ],
+    images: [
+      "/images/products/17/jaqueta-militar-infantil-masculina.png",
+      "/images/products/17/jaqueta-militar-infantil-masculina-2.png",
+    ],
+    isFeatured: false,
+    isNew: true,
+  },
+  {
+    id: "18",
+    name: "Shorts Jeans Curto Feminino",
+    slug: "shorts-jeans-curto-feminino",
+    description:
+      "Shorts jeans feminino curto com modelagem slim e cintura alta. Acabamento com barra desfiada e lavagem clara estonada. Possui bolsos frontais e traseiros, fechamento por botão e zíper. Peça coringa para composições casuais no verão e primavera.",
+    season: "primavera-verao",
+    priceInCents: 9990,
+    category: "shorts",
+    collection: "primavera-verao",
+    fabrics: ["jeans-claro", "jeans-medio"],
+    sizes: ["2", "4", "6", "8", "10", "12"],
+    variants: [
+      { id: "var-57-f", size: "2", fabric: "jeans-claro", stock: 6 },
+      { id: "var-58-f", size: "4", fabric: "jeans-claro", stock: 9 },
+      { id: "var-59-f", size: "6", fabric: "jeans-claro", stock: 8 },
+      { id: "var-60-f", size: "8", fabric: "jeans-medio", stock: 7 },
+      { id: "var-61-f", size: "10", fabric: "jeans-medio", stock: 4 },
+      { id: "var-62-f", size: "12", fabric: "jeans-medio", stock: 3 },
+    ],
+    images: [
+      "/images/products/18/shorts-jeans-curto-feminino.png",
+      "/images/products/18/shorts-jeans-curto-feminino-2.png",
+    ],
+    isFeatured: false,
+    isNew: false,
   },
 ];
 

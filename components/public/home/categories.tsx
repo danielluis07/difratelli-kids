@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 
 import { categories } from "@/lib/mock-data";
@@ -88,8 +89,12 @@ export const Categories = () => {
               defaultCategoryCardMeta;
 
             return (
-              <article
+              <Link
                 key={category.id}
+                href={{
+                  pathname: "/products",
+                  query: { category: category.slug },
+                }}
                 className={cn(
                   "group relative isolate flex min-h-92 overflow-hidden rounded-[2rem] border border-border/70 bg-card shadow-[0_30px_80px_-42px_color-mix(in_oklab,var(--color-foreground)_35%,transparent)] transition-transform duration-300 hover:-translate-y-1",
                   "before:absolute before:inset-x-0 before:top-0 before:h-px before:content-['']",
@@ -144,7 +149,7 @@ export const Categories = () => {
                     </span>
                   </div>
                 </div>
-              </article>
+              </Link>
             );
           })}
         </div>
