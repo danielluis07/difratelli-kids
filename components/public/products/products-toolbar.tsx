@@ -41,11 +41,11 @@ export const ProductsToolbar = ({
             <Loader2Icon className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 animate-spin text-primary/60" />
           ) : null}
           <Input
-            type="search"
+            type="text"
             placeholder="Buscar produtos..."
             value={searchInput}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="h-10 rounded-xl border-border/70 bg-card/60 pl-9 pr-9 backdrop-blur-sm transition-all duration-200 placeholder:text-muted-foreground/50 focus-visible:border-primary/40 focus-visible:bg-card/90 focus-visible:ring-primary/20"
+            className="h-10 rounded-xl pl-9 pr-9 ml-1"
           />
         </div>
 

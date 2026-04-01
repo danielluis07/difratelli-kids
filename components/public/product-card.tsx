@@ -23,7 +23,7 @@ export const ProductCard = ({ product, className }: ProductCardProps) => {
 
   return (
     <Link
-      href={`/produto/${product.slug}`}
+      href={`/products/${product.slug}`}
       className={cn("group flex h-full flex-col", className)}>
       <div className="relative isolate aspect-3/4 overflow-hidden rounded-2xl border border-border/70 bg-muted/40">
         <Image
